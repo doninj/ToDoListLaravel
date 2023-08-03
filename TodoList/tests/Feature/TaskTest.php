@@ -17,13 +17,12 @@ class TaskTest extends TestCase
         $user = User::factory()->create();
         $task = Task::factory()->create();
 
-        $response = $this->actingAs($user)->postJson('/api/tasks', [
+        $response = $this->actingAs($user)->postJson('/api/task', [
             'title' => $task->title,
             'description' => $task->description,
             'status' => $task->status,
             'user_id' => $task->user_id,
         ]);
-
         expect($response->getStatusCode())->toBe(201)
             ->and($response->json())->toHaveKeys(['task']);
     }
